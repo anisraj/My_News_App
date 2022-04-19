@@ -5,7 +5,7 @@ import com.example.mynewsapp.data.utils.Resource
 import com.example.mynewsapp.domain.repository.NewsRepository
 
 class GetNewsHeadLinesUseCase(private val newsRepository: NewsRepository) {
-    suspend fun execute(): Resource<ApiResponse> {
-        return newsRepository.getNewsHeadLines()
+    suspend fun execute(country: String, page: Int): Resource<ApiResponse> {
+        return newsRepository.getNewsHeadLines(country, page)
     }
 }
