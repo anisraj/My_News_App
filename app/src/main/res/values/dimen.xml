@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="newsBgCornerRadius">5dp</dimen>
+    <dimen name="commonInfoBgCornerRadius">2dp</dimen>
+    <dimen name="HeadLineTextSize">17sp</dimen>
+    <dimen name="DescTextSize">14sp</dimen>
+    <dimen name="CommonInfoTextSize">10sp</dimen>
+    <dimen name="DescTextPaddingHorizontal">16dp</dimen>
+    <dimen name="DescTextPaddingVertical">16dp</dimen>
+    <dimen name="CommonBgPaddingHorizontal">6dp</dimen>
+    <dimen name="CommonBgPaddingVertical">6dp</dimen>
+</resources>
