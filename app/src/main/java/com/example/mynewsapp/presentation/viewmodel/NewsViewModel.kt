@@ -1,10 +1,7 @@
 package com.example.mynewsapp.presentation.viewmodel
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.example.mynewsapp.data.model.ApiResponse
 import com.example.mynewsapp.data.utils.Resource
 import com.example.mynewsapp.data.utils.Utility
@@ -19,6 +16,7 @@ class NewsViewModel(
 ) : AndroidViewModel(app) {
 
     private val newsHeadLines = MutableLiveData<Resource<ApiResponse>>()
+    val routeNewsHeadLines: LiveData<Resource<ApiResponse>> = newsHeadLines
 
     fun getNewsHeadlines(country: String, page: Int) {
         viewModelScope.launch(Dispatchers.IO) {
