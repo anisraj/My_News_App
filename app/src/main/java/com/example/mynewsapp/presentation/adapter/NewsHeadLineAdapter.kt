@@ -8,8 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.mynewsapp.data.model.ApiResponse
 import com.example.mynewsapp.databinding.LayoutNewsListItemBinding
+import javax.inject.Inject
 
-class NewsHeadLineAdapter : RecyclerView.Adapter<NewsHeadLineAdapter.ViewHolder>() {
+class NewsHeadLineAdapter @Inject constructor() : RecyclerView.Adapter<NewsHeadLineAdapter.ViewHolder>() {
 
     private val callBack = object : DiffUtil.ItemCallback<ApiResponse.Article>() {
         override fun areItemsTheSame(
