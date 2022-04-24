@@ -26,9 +26,6 @@ data class ApiResponse(
         @SerializedName("source")
         @Expose
         var source: Source? = null,
-        @SerializedName("author")
-        @Expose
-        var author: Any? = null,
         @SerializedName("title")
         @Expose
         var title: String? = null,

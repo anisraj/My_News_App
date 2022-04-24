@@ -38,6 +38,6 @@ class NewsRepositoryImpl(
     }
 
     override fun getSavedNews(): Flow<List<ApiResponse.Article>> {
-        TODO("Not yet implemented")
+        return newsLocalDataSource.getSavedNews()
     }
 }
