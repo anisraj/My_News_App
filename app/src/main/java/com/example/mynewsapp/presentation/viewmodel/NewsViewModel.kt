@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.example.mynewsapp.data.model.ApiResponse
 import com.example.mynewsapp.data.utils.Resource
 import com.example.mynewsapp.data.utils.Utility
+import com.example.mynewsapp.domain.usecase.DeleteSavedNewsUseCase
 import com.example.mynewsapp.domain.usecase.GetNewsHeadLinesUseCase
 import com.example.mynewsapp.domain.usecase.GetSavedNewsUseCase
 import com.example.mynewsapp.domain.usecase.SaveNewsUseCase
@@ -17,7 +18,8 @@ class NewsViewModel(
     private val app: Application,
     private val getNewsHeadLinesUseCase: GetNewsHeadLinesUseCase,
     private val saveNewsUseCase: SaveNewsUseCase,
-    private val getSavedNewsUseCase: GetSavedNewsUseCase
+    private val getSavedNewsUseCase: GetSavedNewsUseCase,
+    private val deleteSavedNewsUseCase: DeleteSavedNewsUseCase
 ) : AndroidViewModel(app) {
 
     private val newsHeadLines = MutableLiveData<Resource<ApiResponse>>()
@@ -58,6 +60,16 @@ class NewsViewModel(
             getSavedNewsUseCase.execute().collect {
                 emit(it)
             }
+        }
+    }
+
+    /**
+     *  fun for deleting article from room database
+     *  @param article article to delete
+     * */
+    fun deleteSavedNews(article: ApiResponse.Article) {
+        viewModelScope.launch {
+            deleteSavedNewsUseCase.execute(article)
         }
     }
 }

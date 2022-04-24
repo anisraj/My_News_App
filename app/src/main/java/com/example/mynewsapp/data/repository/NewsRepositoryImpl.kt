@@ -25,16 +25,12 @@ class NewsRepositoryImpl(
         return Resource.Error(response.message())
     }
 
-    override suspend fun getSearchedNews(searchQuery: String): Resource<ApiResponse> {
-        TODO("Not yet implemented")
-    }
-
     override suspend fun saveNews(article: ApiResponse.Article) {
         newsLocalDataSource.saveArticleToDb(article)
     }
 
     override suspend fun deleteNews(article: ApiResponse.Article) {
-        TODO("Not yet implemented")
+        return newsLocalDataSource.deleteArticleFromDb(article)
     }
 
     override fun getSavedNews(): Flow<List<ApiResponse.Article>> {

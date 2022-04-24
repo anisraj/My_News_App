@@ -7,11 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mynewsapp.data.utils.VariableConstants
 import com.example.mynewsapp.databinding.FragmentSavedNewsBinding
 import com.example.mynewsapp.presentation.adapter.NewsHeadLineAdapter
 import com.example.mynewsapp.presentation.viewmodel.NewsViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class SavedNewsFragment : Fragment() {
     private lateinit var binding: FragmentSavedNewsBinding
@@ -41,6 +44,34 @@ class SavedNewsFragment : Fragment() {
             )
         }
         initRecyclerview()
+        val itemTouchHelperCallback = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ): Boolean {
+                return true
+            }
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position  = viewHolder.adapterPosition
+                val article = newsAdapter.differ.currentList[position]
+                viewModel.deleteSavedNews(article)
+                Snackbar.make(view, "Deleted", Snackbar.LENGTH_LONG).apply {
+                    setAction("Undo") {
+                        viewModel.saveArticle(article)
+                    }
+                    show()
+                }
+            }
+
+        }
+        ItemTouchHelper(itemTouchHelperCallback).apply {
+            attachToRecyclerView(binding.rvSavedNews)
+        }
         viewModel.getSavedNews().observe(viewLifecycleOwner, Observer {
             newsAdapter.differ.submitList(it)
         })

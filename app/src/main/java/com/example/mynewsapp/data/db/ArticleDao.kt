@@ -1,9 +1,6 @@
 package com.example.mynewsapp.data.db
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.example.mynewsapp.data.model.ApiResponse
 import com.example.mynewsapp.data.utils.VariableConstants
 import com.example.mynewsapp.data.utils.VariableConstants.Companion.TABLE_NAME
@@ -17,4 +14,7 @@ interface ArticleDao {
 
     @Query("SELECT * FROM $TABLE_NAME")
     fun getAllArticles(): Flow<List<ApiResponse.Article>>
+
+    @Delete
+    suspend fun deleteArticle(article: ApiResponse.Article)
 }
