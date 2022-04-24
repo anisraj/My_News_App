@@ -1,6 +1,9 @@
 package com.example.mynewsapp.data.model
 
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.mynewsapp.data.utils.VariableConstants
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose
 import java.io.Serializable
@@ -16,7 +19,10 @@ data class ApiResponse(
     @Expose
     var articles: List<Article?>? = null
 ) {
+    @Entity(tableName = VariableConstants.TABLE_NAME)
     data class Article(
+        @PrimaryKey(autoGenerate = true)
+        val id: Int? = null,
         @SerializedName("source")
         @Expose
         var source: Source? = null,
