@@ -53,6 +53,17 @@ class NewsHeadLineAdapter @Inject constructor() : RecyclerView.Adapter<NewsHeadL
             Glide.with(binding.ivNewsHeadLines.context)
                 .load(article.urlToImage)
                 .into(binding.ivNewsHeadLines)
+            binding.root.setOnClickListener {
+                onItemClickListener?.let {
+                    it(article)
+                }
+            }
         }
+    }
+
+    private var onItemClickListener: ((ApiResponse.Article) -> Unit)? = null
+
+    fun setOnClickListener(listener: (ApiResponse.Article) -> Unit) {
+        onItemClickListener = listener
     }
 }

@@ -3,6 +3,7 @@ package com.example.mynewsapp.data.model
 
 import com.google.gson.annotations.SerializedName
 import com.google.gson.annotations.Expose
+import java.io.Serializable
 
 data class ApiResponse(
     @SerializedName("status")
@@ -40,7 +41,7 @@ data class ApiResponse(
         @SerializedName("content")
         @Expose
         var content: String? = null
-    ) {
+    ) : Serializable {
         data class Source(
             @SerializedName("id")
             @Expose
