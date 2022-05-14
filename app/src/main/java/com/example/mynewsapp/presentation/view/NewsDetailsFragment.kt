@@ -1,4 +1,4 @@
-package com.example.mynewsapp
+package com.example.mynewsapp.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebViewClient
-import androidx.navigation.fragment.navArgs
+import com.example.mynewsapp.R
 import com.example.mynewsapp.data.model.ApiResponse
 import com.example.mynewsapp.data.utils.VariableConstants
 import com.example.mynewsapp.databinding.FragmentNewsDetailsBinding

@@ -20,7 +20,7 @@ data class ApiResponse(
     var articles: List<Article?>? = null
 ) {
     @Entity(tableName = VariableConstants.TABLE_NAME)
-    data class Article(
+    data class  Article(
         @PrimaryKey(autoGenerate = true)
         val id: Int? = null,
         @SerializedName("source")

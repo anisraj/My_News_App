@@ -1,4 +1,4 @@
-package com.example.mynewsapp
+package com.example.mynewsapp.presentation.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,10 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AbsListView
 import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mynewsapp.R
 import com.example.mynewsapp.data.utils.Resource
 import com.example.mynewsapp.data.utils.VariableConstants
 import com.example.mynewsapp.databinding.FragmentNewsHeadLinesBinding
@@ -18,7 +19,7 @@ import com.example.mynewsapp.presentation.adapter.NewsHeadLineAdapter
 import com.example.mynewsapp.presentation.viewmodel.NewsViewModel
 
 class NewsHeadLinesFragment : Fragment() {
-    private lateinit var viewModel: NewsViewModel
+    private val viewModel: NewsViewModel by activityViewModels()
     private lateinit var binding: FragmentNewsHeadLinesBinding
     private lateinit var newsAdapter: NewsHeadLineAdapter
     private var country = "IN"
@@ -39,7 +40,6 @@ class NewsHeadLinesFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentNewsHeadLinesBinding.bind(view)
-        viewModel = (activity as MainActivity).viewModel
         newsAdapter = (activity as MainActivity).newsAdapter
         newsAdapter.setOnClickListener {
             val bundle = Bundle().apply {

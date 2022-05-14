@@ -23,7 +23,7 @@ class NewsHeadLineAdapter @Inject constructor() : RecyclerView.Adapter<NewsHeadL
             oldItem: ApiResponse.Article,
             newItem: ApiResponse.Article
         ): Boolean {
-            return oldItem == newItem
+            return oldItem.equals(newItem)
         }
     }
 

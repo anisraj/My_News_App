@@ -1,6 +1,7 @@
 package com.example.mynewsapp.presentation.viewmodel
 
 import android.app.Application
+import android.content.Context
 import androidx.lifecycle.*
 import com.example.mynewsapp.data.model.ApiResponse
 import com.example.mynewsapp.data.utils.Resource
@@ -9,18 +10,22 @@ import com.example.mynewsapp.domain.usecase.DeleteSavedNewsUseCase
 import com.example.mynewsapp.domain.usecase.GetNewsHeadLinesUseCase
 import com.example.mynewsapp.domain.usecase.GetSavedNewsUseCase
 import com.example.mynewsapp.domain.usecase.SaveNewsUseCase
+import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.lang.Exception
+import javax.inject.Inject
 
-class NewsViewModel(
-    private val app: Application,
+@HiltViewModel
+class NewsViewModel @Inject constructor(
+    @ApplicationContext private val context: Context,
     private val getNewsHeadLinesUseCase: GetNewsHeadLinesUseCase,
     private val saveNewsUseCase: SaveNewsUseCase,
     private val getSavedNewsUseCase: GetSavedNewsUseCase,
     private val deleteSavedNewsUseCase: DeleteSavedNewsUseCase
-) : AndroidViewModel(app) {
+) : ViewModel() {
 
     private val newsHeadLines = MutableLiveData<Resource<ApiResponse>>()
     val routeNewsHeadLines: LiveData<Resource<ApiResponse>> = newsHeadLines
@@ -29,7 +34,7 @@ class NewsViewModel(
         viewModelScope.launch(Dispatchers.IO) {
             try {
                 newsHeadLines.postValue(Resource.Loading())
-                if (Utility.isNetworkAvailable(app)) {
+                if (Utility.isNetworkAvailable(context)) {
                     val apiResult = getNewsHeadLinesUseCase.execute(country, page)
                     newsHeadLines.postValue(apiResult)
                 } else {

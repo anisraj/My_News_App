@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/newsHeadLinesFragment"
-        android:name="com.example.mynewsapp.NewsHeadLinesFragment"
+        android:name="com.example.mynewsapp.presentation.view.NewsHeadLinesFragment"
         android:label="fragment_news_head_lines"
         tools:layout="@layout/fragment_news_head_lines" >
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
         android:id="@+id/savedNewsFragment"
-        android:name="com.example.mynewsapp.SavedNewsFragment"
+        android:name="com.example.mynewsapp.presentation.view.SavedNewsFragment"
         android:label="fragment_saved_news"
         tools:layout="@layout/fragment_saved_news" >
         <action
@@ -25,7 +25,7 @@
     </fragment>
     <fragment
         android:id="@+id/newsDetailsFragment"
-        android:name="com.example.mynewsapp.NewsDetailsFragment"
+        android:name="com.example.mynewsapp.presentation.view.NewsDetailsFragment"
         android:label="fragment_news_details"
         tools:layout="@layout/fragment_news_details" >
         <argument
